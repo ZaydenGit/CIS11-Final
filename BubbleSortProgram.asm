@@ -39,6 +39,8 @@ INPUT_LOOP
 	RET
 
 GET_NUM
+		
+
 	; for this subroutine we want to get a number, multiply it by 10
 	; then get another number and add it to the first.
 	; remember the 5 bit limit (so you have to use registers to store values)
@@ -48,7 +50,12 @@ BUBBLE_SORT	; subroutine for bubble sort
 	; bubble sort will contain two loops, one increments down from 7 and triggers inner loop
 	; refer to flowchart I made in documentation
 
-DISPLAY_OUTPUT	; subroutine to output sorted array'
+DISPLAY_OUTPUT
+	
+	;
+	;	
+	;
+	; subroutine to output sorted array'
 	; loop through array and print results with a space in between (x20 iirc). maybe use newline as well
 
 
@@ -63,4 +70,4 @@ ARR_SIZE	.FILL #8
 
 .END
 
-;TEST CHANGE 5
+;TEST CHANGE 6
