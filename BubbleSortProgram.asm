@@ -5,8 +5,8 @@
 ; ------------
 
 JSR GET_INPUTS
-JSR BUBBLE_SORT
-JSR DISPLAY_OUTPUT
+;JSR BUBBLE_SORT
+;JSR DISPLAY_OUTPUT
 HALT
 
 ; -----------
@@ -22,10 +22,12 @@ AND R2, R2, #0			; R2 for loop counter
 ; loop 8 times to save to array
 
 INPUT_LOOP
-	LD R0, PROMPT
-	OUT
+	LEA R0, PROMPT
+	PUTS
 	JSR GET_NUM 		; subroutine for getting two digit number
 	STR R0, R1, #0
+	LD R0, NEWLINE
+	OUT
 	ADD R1, R1, #1 		; increment address for array
 	ADD R2, R2, #1 		; increment loop counter
 	
@@ -43,12 +45,28 @@ GET_NUM
 	; then get another number and add it to the first.
 	; remember the 5 bit limit (so you have to use registers to store values)
 	; and ASCII offset
+	GETC
+	OUT
+	LD R4, ASCII_OFFSET
+	NOT R4, R4
+	ADD R4, R4, #1
+	ADD R0, R0, R4		; R0 - 48
+	ADD R5, R0, R0		; R5 = R0 * 2
+	ADD R6, R5, R5		; R6 = R0 * 4
+	ADD R6, R6, R6		; R6 = R0 * 8
+	ADD R6, R6, R5		; R6 = (8+2)*R0 = R0*10
+	GETC
+	OUT
+	ADD R0, R0, R4
+	ADD R0, R6, R0
+	RET
+	
 
-BUBBLE_SORT	; subroutine for bubble sort
+;BUBBLE_SORT	; subroutine for bubble sort
 	; bubble sort will contain two loops, one increments down from 7 and triggers inner loop
 	; refer to flowchart I made in documentation
 
-DISPLAY_OUTPUT	; subroutine to output sorted array'
+;DISPLAY_OUTPUT	; subroutine to output sorted array'
 	; loop through array and print results with a space in between (x20 iirc). maybe use newline as well
 
 
@@ -56,15 +74,11 @@ DISPLAY_OUTPUT	; subroutine to output sorted array'
 ; VARS
 ; ----
 
+NEWLINE		.FILL X0A
 ASCII_OFFSET	.FILL X30
-PROMPT	.STRINGZ "Input a number 0-99: "
-ARRAY	.BLKW 8
+PROMPT		.STRINGZ "Input a number 0-99: "
+ARRAY		.BLKW 8
 ARR_SIZE	.FILL #8
 
 .END
 
-<<<<<<< HEAD
-;TEST CHANGE 3
-=======
-;AAAAAA
->>>>>>> 80fe21c6f87732e1d7a11426704ce935a6997c1a
