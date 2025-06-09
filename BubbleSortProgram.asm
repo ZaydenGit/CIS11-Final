@@ -1,0 +1,10 @@
+.ORIG X3000
+
+; MAIN PROGRAM
+
+ADD R0, R0, #0
+
+
+HALT
+
+.END
