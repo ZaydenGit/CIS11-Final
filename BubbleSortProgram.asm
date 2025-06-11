@@ -41,8 +41,6 @@ INPUT_LOOP
 	RET
 
 GET_NUM
-		
-
 	; for this subroutine we want to get a number, multiply it by 10
 	; then get another number and add it to the first.
 	; remember the 5 bit limit (so you have to use registers to store values)
@@ -69,13 +67,6 @@ BUBBLE_SORT			; subroutine for bubble sort
 				; refer to flowchart I made in documentation
 	LD R6, ARR_SIZE
 
-DISPLAY_OUTPUT
-	
-	;
-	;	
-	;
-	; subroutine to output sorted array'
-	; loop through array and print results with a space in between (x20 iirc). maybe use newline as well
 OUTER_LOOP
 
 	ADD R6, R6, #-1 	; outer loop counter = n-1
@@ -116,4 +107,3 @@ ARR_SIZE	.FILL #8
 
 .END
 
-;TEST CHANGE 7
