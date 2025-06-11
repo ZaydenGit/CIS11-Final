@@ -69,7 +69,6 @@ BUBBLE_SORT			; subroutine for bubble sort
 				; refer to flowchart I made in documentation
 	LD R6, ARR_SIZE
 
-<<<<<<< HEAD
 DISPLAY_OUTPUT
 	
 	;
@@ -77,9 +76,7 @@ DISPLAY_OUTPUT
 	;
 	; subroutine to output sorted array'
 	; loop through array and print results with a space in between (x20 iirc). maybe use newline as well
-=======
 OUTER_LOOP
->>>>>>> c818771d45f9c7104d521228585fdb4a1dd14107
 
 	ADD R6, R6, #-1 	; outer loop counter = n-1
 	BRnz DISPLAY_OUTPUT
@@ -119,7 +116,4 @@ ARR_SIZE	.FILL #8
 
 .END
 
-<<<<<<< HEAD
 ;TEST CHANGE 7
-=======
->>>>>>> c818771d45f9c7104d521228585fdb4a1dd14107
