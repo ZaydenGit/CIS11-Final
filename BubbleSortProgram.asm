@@ -70,7 +70,7 @@ BUBBLE_SORT			; subroutine for bubble sort
 OUTER_LOOP
 
 	ADD R6, R6, #-1 	; outer loop counter = n-1
-	BRnz DISPLAY_OUTPUT
+	;BRnz DISPLAY_OUTPUT
 	ADD R2, R6, #0
 	LD R1, ARRAY		; point to first array element
 INNER_LOOP
@@ -91,7 +91,7 @@ POST_SWAP
 	BRp INNER_LOOP
 	BRnzp OUTER_LOOP
 
-DISPLAY_OUTPUT			; subroutine to output sorted array'
+;DISPLAY_OUTPUT			; subroutine to output sorted array'
 				; loop through array and print results with a space in between (x20 iirc). maybe use newline as well
 				; for a 2 digit number, divide by 10 and modulo by 10. 42/10 = 4, 42%10 = 2, so you get 4 and 2
 
