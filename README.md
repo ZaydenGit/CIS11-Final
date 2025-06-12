@@ -1,10 +1,10 @@
 # LC-3 Bubble Sort Program
 
-This LC-3 assembly language program implements the "Bubble Sort" algorithm to sort 8 user-input numbers (ranging from 0 to 99) in ascending order, and outputs the sorted list onto the console.  It utlizes such LC-3 features like subroutines, stack operations, branching, and ASCII conversion.
+This LC-3 assembly language program implements the "Bubble Sort" algorithm to sort 8 user-input numbers (ranging from 0 to 99) in ascending order, and outputs the sorted list onto the console.  It utilizes such LC-3 features like subroutines, stack operations, branching, and ASCII conversion.
 
-### Project Objetives
+### Project Objectives
 - Apply core LC-3 concepts such as branching, looping, stack managemnet, subroutines, and input handling in a practical program.
-- Support user input of up to 8 integers (0-99), stored them in an array, sorts using Bubble Sort, and display sorted output
+- Support user input of up to 8 integers (0-99), store them in an array, sort using Bubble Sort, and display sorted output
 
 ### How To Assemble And Run
 1. Open the LC-3 simulator (LC3Edit.exe)
