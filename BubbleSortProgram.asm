@@ -30,15 +30,15 @@ INPUT_LOOP
 				; then get another number and add it to the first.
 				; remember the 5 bit limit (so you have to use registers to store values)
 				; and ASCII offset
-	ST R7, COUNTER_R7
+	ST R7, COUNTER
 
 	LEA R0, PROMPT
 	PUTS
 
-	GETC
+	GETC			; get first character
 	OUT
-	ADD R2, R0, #0
-	LD R4, ASCII_OFFSET
+	ADD R2, R0, #0		; copy into r2
+	LD R4, ASCII_OFFSET	
 	NOT R4, R4
 	ADD R4, R4, #1
 
@@ -49,7 +49,7 @@ INPUT_LOOP
 	ADD R5, R5, #1
 	ADD R5, R0, R5
 	BRzp BAD_INPUT		; more input validation
-
+				; multiply first digit by 10, so
 	ADD R3, R2, R2		; R3 = input * 2
 	ADD R2, R3, R3		; R2 = R3 * 2 = input * 4
 	ADD R2, R2, R2		; R2 = input * 8
@@ -66,17 +66,18 @@ INPUT_LOOP
 	ADD R5, R0, R5
 	BRzp BAD_INPUT
 
-	ADD R4, R3, R2
-	STR R4, R1, #0
+	ADD R4, R3, R2		; add two numbers together
+	STR R4, R1, #0		; store in array
 	LD R0, NEWLINE
 	OUT
 	ADD R1, R1, #1 		; increment address for array
-	LD R7, COUNTER_R7
+	LD R7, COUNTER		; load counter
 	ADD R7, R7, #-1
 	BRp INPUT_LOOP		; If neg loop
 	BR POP_ALL_AND_RET
 
 BAD_INPUT
+
 	LD R0, NEWLINE
 	OUT
 	LEA R0, BAD_MESSAGE
@@ -84,9 +85,10 @@ BAD_INPUT
 	LD R0, NEWLINE
 	OUT
 	BR INPUT_LOOP
+
 BUBBLE_SORT			; subroutine for bubble sort
 				; bubble sort will contain two loops, one increments down from 7 and triggers inner loop
-				; refer to flowchart I made in documentation
+				; refer to flowchart made in documentation
 	ST R7, PARENT_R7
 	JSR PUSH_ALL
 	LD R7, ARR_SIZE
@@ -97,6 +99,7 @@ OUTER_LOOP
 	BRnz SORTED
 	ADD R2, R7, #0
 	LD R1, ARRAY		; point to first array element
+
 INNER_LOOP
 
 	LDR R3, R1, #0		; N'th element of array
@@ -125,13 +128,11 @@ DISPLAY_OUTPUT			; subroutine to output sorted array'
 	LD R1, ARRAY		; load array into r1
 	LD R5, ARR_SIZE		; load array size into r6
 DISPLAY_LOOP
-	ST R5, COUNTER_R7
-	;LDR R3, R1, #0		; value of arr[R1]
-	;ADD R2, R3, #0		; copy r3
+	ST R5, COUNTER		; store r5 in temp counter in memory
 	AND R4, R4, #0
 
-	LDR R3, R1, #0
-	ADD R2, R3, #0
+	LDR R3, R1, #0		; value of arr[R1]
+	ADD R2, R3, #0		; copy r3
 DIV_LOOP
 	ADD R2, R2, #-10	; subtract (division is looped subtraction) by 10
 	BRn DIV_EXIT		; if negative then number is fully divided
@@ -153,26 +154,23 @@ DIV_EXIT
 	OUT
 	
 	ADD R1, R1, #1		; increment array pointer
-	LD R5, COUNTER_R7
+	LD R5, COUNTER
 	ADD R5, R5, #-1		; decrement array length iterator
 	BRp DISPLAY_LOOP
 	BR POP_ALL_AND_RET
 
 PUSH_ALL
-	ST R0, TEMP_R0
+	ST R0, TEMP_R0		; store registers here and load after so as to not mess with their contents
 	ST R1, TEMP_R1
-	ST R6, TEMP2_R6
 	ST R7, INNER_STACK_R7
 	ADD R1, R6, #-7		; check for all 7 spaces in memory instead of individually (7 spaces because we do not include r6)
-	ST R1, TEMP2_R1		;;
-	ST R6, TEMP3_R6		;;
 	LD R0, STACK_BASE
 	ADD R0, R0, R1 		; R7=(R6-7)-R7 = STACK-7-BOTTOM > 0
 	BRn STACK_OVERFLOW
-	LD R0, TEMP_R0
+	LD R0, TEMP_R0		; loaded temp vals
 	LD R1, TEMP_R1
 
-	ADD R6, R6, #-1		; -1 from original stack pointer
+	ADD R6, R6, #-1		; traverse down the stack
 	STR R0, R6, #0		; save each register
 
 	ADD R6, R6, #-1
@@ -198,19 +196,16 @@ PUSH_ALL
 	RET
 	
 POP_ALL_AND_RET
-	;ST R0, TEMP_R0
-	;ST R1, TEMP_R1
-	ADD R1, R6, #7
+
+	ADD R1, R6, #7		; no need to preserve registers here as they get overwritten in pop
 	LD R0, STACK_TOP
 	NOT R0, R0
 	ADD R0, R0, #1
 	ADD R0, R0, R1
 	BRp STACK_UNDERFLOW	; if stack top is x4000, current stack + 7 - 4000 should be negative or zero
-	;LD R0, TEMP_R0
 	
-	LDR R7, R6, #0
-	;ST R7, COUNTER_R7
-	ADD R6, R6, #1
+	LDR R7, R6, #0		; load value to register
+	ADD R6, R6, #1		; traverse up stack
 
 	LDR R5, R6, #0
 	ADD R6, R6, #1
@@ -259,15 +254,12 @@ BAD_MESSAGE	.STRINGZ "Character must be between 0 and 9"
 ARRAY		.FILL x3200
 ARR_SIZE	.FILL #8
 SPACE		.FILL x20
-STACK_BASE	.FILL xCD00
+STACK_BASE	.FILL xCD00	; -x3300
 STACK_TOP	.FILL x4000
-TEMP_R0		.BLKW 1	; roundabout solution
+
+TEMP_R0		.BLKW 1
 TEMP_R1		.BLKW 1
-TEMP2_R1	.BLKW 1
-TEMP_R6		.BLKW 1
-TEMP2_R6	.BLKW 1
-TEMP3_R6	.BLKW 1
-COUNTER_R7	.BLKW 1
+COUNTER		.BLKW 1
 PARENT_R7	.BLKW 1
 INNER_STACK_R7	.BLKW 1
 
