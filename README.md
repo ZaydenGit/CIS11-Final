@@ -25,7 +25,7 @@ Expected Output:
 02 03 04 06 08 11 17 21
 
 ### Limitations
-This program cannot handle three digit integers and negative integers. This program is unable to store more than 8 integers. 
+This program cannot handle three digit integers and negative integers. This program is unable to store more than 8 integers.
 
 
 
