@@ -49,5 +49,3 @@ This program cannot handle three digit integers and negative integers. This prog
 Assembly Programming
 
 Dr. Nguyen
-
-2025-06-11
