@@ -13,7 +13,7 @@ This LC-3 assembly language program implements the "Bubble Sort" algorithm to so
 4. Load the BubbleSortProgram.obj in LC3 Simulator (Simulate.exe)
 5. Run the program
 6. Console will prompt you to enter 8 numbers
-7. Input number between 0 - 99 (Format single digits ex. 01, 02, 03...)
+7. Input number between 00 - 99 (Format single digits ex. 01, 02, 03...)
 8. Console will output inputed numbers in ascending order
 
    
@@ -39,15 +39,15 @@ This program cannot handle three digit integers and negative integers. This prog
 ### Team Members
 **Team Stacker**
 
--**Zayden Middleton**
+-Zayden Middleton
 
--**Bienvenido Palma Jr**
+-Bienvenido Palma Jr
 
--**Chris Shey Caponpon Enriquez**
+-Chris Shey Caponpon Enriquez
 
 ### Course Info
-**Assembly Programming**
+Assembly Programming
 
-**Dr. Nguyen**
+Dr. Nguyen
 
-**2025-06-11**
+2025-06-11
