@@ -5,7 +5,7 @@ This LC-3 assembly language program implements the "Bubble Sort" algorithm to so
 
 ### Project Objetives
 - Apply core LC-3 concepts such as branching, looping, stack managemnet, subroutines, and input handling in a practical program.
-- Support user input of up to 8 intergers (0-99), stored them in an array, sorts using Bubble Sort, and display sorted output
+- Support user input of up to 8 integers (0-99), stored them in an array, sorts using Bubble Sort, and display sorted output
 
 ### How To Assemble And Run
 1. Open the LC-3 simulator (LC3Edit.exe)
@@ -25,13 +25,17 @@ Input:
 Expected Output:
 02 03 04 06 08 11 17 21
 
+#### Limitations
+This program cannot handle three digit integers and negative integers. This program is unable to store more than 8 integers. 
+
+
 
 ## Files
 `BubbleSortProgram.asm` - Main LC-3 Source Code
 
 `README.md` - This documentation
 
-`Documentation.pdf` -  Project Objective & Flowchart
+`CIS11 Course Project Documentation.pdf` -  Project Objective & Flowchart
 
 ## Team Members
 **Team Stacker**
@@ -47,4 +51,4 @@ Expected Output:
 
 **Dr. Nguyen**
 
-**6/11/25**
+**2025-06-11**
