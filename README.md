@@ -29,7 +29,7 @@ This program cannot handle three digit integers and negative integers. This prog
 
 
 
-###Files
+### Files
 `BubbleSortProgram.asm` - Main LC-3 Source Code
 
 `README.md` - This documentation
